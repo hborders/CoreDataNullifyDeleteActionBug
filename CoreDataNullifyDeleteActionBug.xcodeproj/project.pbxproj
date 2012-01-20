@@ -1,0 +1,263 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7B7959C714CA245F002588FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7959C614CA245F002588FB /* UIKit.framework */; };
+		7B7959C914CA245F002588FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7959C814CA245F002588FB /* Foundation.framework */; };
+		7B7959CB14CA245F002588FB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7959CA14CA245F002588FB /* CoreGraphics.framework */; };
+		7B7959D114CA245F002588FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B7959CF14CA245F002588FB /* InfoPlist.strings */; };
+		7B7959D314CA245F002588FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7959D214CA245F002588FB /* main.m */; };
+		7B7959D714CA245F002588FB /* HBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7959D614CA245F002588FB /* HBAppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7B7959C214CA245F002588FB /* CoreDataNullifyDeleteActionBug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataNullifyDeleteActionBug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B7959C614CA245F002588FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7B7959C814CA245F002588FB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7B7959CA14CA245F002588FB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7B7959CE14CA245F002588FB /* CoreDataNullifyDeleteActionBug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreDataNullifyDeleteActionBug-Info.plist"; sourceTree = "<group>"; };
+		7B7959D014CA245F002588FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7B7959D214CA245F002588FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7B7959D414CA245F002588FB /* CoreDataNullifyDeleteActionBug-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataNullifyDeleteActionBug-Prefix.pch"; sourceTree = "<group>"; };
+		7B7959D514CA245F002588FB /* HBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBAppDelegate.h; sourceTree = "<group>"; };
+		7B7959D614CA245F002588FB /* HBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBAppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7B7959BF14CA245F002588FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B7959C714CA245F002588FB /* UIKit.framework in Frameworks */,
+				7B7959C914CA245F002588FB /* Foundation.framework in Frameworks */,
+				7B7959CB14CA245F002588FB /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7B7959B714CA245F002588FB = {
+			isa = PBXGroup;
+			children = (
+				7B7959CC14CA245F002588FB /* CoreDataNullifyDeleteActionBug */,
+				7B7959C514CA245F002588FB /* Frameworks */,
+				7B7959C314CA245F002588FB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7B7959C314CA245F002588FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7B7959C214CA245F002588FB /* CoreDataNullifyDeleteActionBug.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B7959C514CA245F002588FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B7959C614CA245F002588FB /* UIKit.framework */,
+				7B7959C814CA245F002588FB /* Foundation.framework */,
+				7B7959CA14CA245F002588FB /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B7959CC14CA245F002588FB /* CoreDataNullifyDeleteActionBug */ = {
+			isa = PBXGroup;
+			children = (
+				7B7959D514CA245F002588FB /* HBAppDelegate.h */,
+				7B7959D614CA245F002588FB /* HBAppDelegate.m */,
+				7B7959CD14CA245F002588FB /* Supporting Files */,
+			);
+			path = CoreDataNullifyDeleteActionBug;
+			sourceTree = "<group>";
+		};
+		7B7959CD14CA245F002588FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7B7959CE14CA245F002588FB /* CoreDataNullifyDeleteActionBug-Info.plist */,
+				7B7959CF14CA245F002588FB /* InfoPlist.strings */,
+				7B7959D214CA245F002588FB /* main.m */,
+				7B7959D414CA245F002588FB /* CoreDataNullifyDeleteActionBug-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7B7959C114CA245F002588FB /* CoreDataNullifyDeleteActionBug */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B7959DA14CA245F002588FB /* Build configuration list for PBXNativeTarget "CoreDataNullifyDeleteActionBug" */;
+			buildPhases = (
+				7B7959BE14CA245F002588FB /* Sources */,
+				7B7959BF14CA245F002588FB /* Frameworks */,
+				7B7959C014CA245F002588FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreDataNullifyDeleteActionBug;
+			productName = CoreDataNullifyDeleteActionBug;
+			productReference = 7B7959C214CA245F002588FB /* CoreDataNullifyDeleteActionBug.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7B7959B914CA245F002588FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 7B7959BC14CA245F002588FB /* Build configuration list for PBXProject "CoreDataNullifyDeleteActionBug" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7B7959B714CA245F002588FB;
+			productRefGroup = 7B7959C314CA245F002588FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7B7959C114CA245F002588FB /* CoreDataNullifyDeleteActionBug */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7B7959C014CA245F002588FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B7959D114CA245F002588FB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7B7959BE14CA245F002588FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B7959D314CA245F002588FB /* main.m in Sources */,
+				7B7959D714CA245F002588FB /* HBAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7B7959CF14CA245F002588FB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B7959D014CA245F002588FB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7B7959D814CA245F002588FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		7B7959D914CA245F002588FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7B7959DB14CA245F002588FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CoreDataNullifyDeleteActionBug/CoreDataNullifyDeleteActionBug-Prefix.pch";
+				INFOPLIST_FILE = "CoreDataNullifyDeleteActionBug/CoreDataNullifyDeleteActionBug-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7B7959DC14CA245F002588FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CoreDataNullifyDeleteActionBug/CoreDataNullifyDeleteActionBug-Prefix.pch";
+				INFOPLIST_FILE = "CoreDataNullifyDeleteActionBug/CoreDataNullifyDeleteActionBug-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7B7959BC14CA245F002588FB /* Build configuration list for PBXProject "CoreDataNullifyDeleteActionBug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B7959D814CA245F002588FB /* Debug */,
+				7B7959D914CA245F002588FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B7959DA14CA245F002588FB /* Build configuration list for PBXNativeTarget "CoreDataNullifyDeleteActionBug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B7959DB14CA245F002588FB /* Debug */,
+				7B7959DC14CA245F002588FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7B7959B914CA245F002588FB /* Project object */;
+}

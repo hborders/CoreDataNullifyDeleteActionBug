@@ -13,9 +13,15 @@
 		7B7959D114CA245F002588FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B7959CF14CA245F002588FB /* InfoPlist.strings */; };
 		7B7959D314CA245F002588FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7959D214CA245F002588FB /* main.m */; };
 		7B7959D714CA245F002588FB /* HBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7959D614CA245F002588FB /* HBAppDelegate.m */; };
+		7B80829714CA25A60015B373 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B80829514CA25A60015B373 /* Model.xcdatamodeld */; };
+		7B80829B14CA26E80015B373 /* Child.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B80829A14CA26E80015B373 /* Child.m */; };
+		7B80829E14CA26E80015B373 /* Parent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B80829D14CA26E80015B373 /* Parent.m */; };
+		7B8082A014CA2A540015B373 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B80829F14CA2A540015B373 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B37784F14CD252100FA6905 /* No Action Delete Rule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "No Action Delete Rule.xcdatamodel"; sourceTree = "<group>"; };
+		7B37785114CD254900FA6905 /* Nullify Delete Rule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Nullify Delete Rule.xcdatamodel"; sourceTree = "<group>"; };
 		7B7959C214CA245F002588FB /* CoreDataNullifyDeleteActionBug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataNullifyDeleteActionBug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B7959C614CA245F002588FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7B7959C814CA245F002588FB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -26,6 +32,12 @@
 		7B7959D414CA245F002588FB /* CoreDataNullifyDeleteActionBug-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataNullifyDeleteActionBug-Prefix.pch"; sourceTree = "<group>"; };
 		7B7959D514CA245F002588FB /* HBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBAppDelegate.h; sourceTree = "<group>"; };
 		7B7959D614CA245F002588FB /* HBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBAppDelegate.m; sourceTree = "<group>"; };
+		7B80829614CA25A60015B373 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		7B80829914CA26E80015B373 /* Child.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Child.h; sourceTree = "<group>"; };
+		7B80829A14CA26E80015B373 /* Child.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Child.m; sourceTree = "<group>"; };
+		7B80829C14CA26E80015B373 /* Parent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parent.h; sourceTree = "<group>"; };
+		7B80829D14CA26E80015B373 /* Parent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parent.m; sourceTree = "<group>"; };
+		7B80829F14CA2A540015B373 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B8082A014CA2A540015B373 /* CoreData.framework in Frameworks */,
 				7B7959C714CA245F002588FB /* UIKit.framework in Frameworks */,
 				7B7959C914CA245F002588FB /* Foundation.framework in Frameworks */,
 				7B7959CB14CA245F002588FB /* CoreGraphics.framework in Frameworks */,
@@ -62,6 +75,7 @@
 		7B7959C514CA245F002588FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7B80829F14CA2A540015B373 /* CoreData.framework */,
 				7B7959C614CA245F002588FB /* UIKit.framework */,
 				7B7959C814CA245F002588FB /* Foundation.framework */,
 				7B7959CA14CA245F002588FB /* CoreGraphics.framework */,
@@ -86,6 +100,11 @@
 				7B7959CF14CA245F002588FB /* InfoPlist.strings */,
 				7B7959D214CA245F002588FB /* main.m */,
 				7B7959D414CA245F002588FB /* CoreDataNullifyDeleteActionBug-Prefix.pch */,
+				7B80829514CA25A60015B373 /* Model.xcdatamodeld */,
+				7B80829C14CA26E80015B373 /* Parent.h */,
+				7B80829D14CA26E80015B373 /* Parent.m */,
+				7B80829914CA26E80015B373 /* Child.h */,
+				7B80829A14CA26E80015B373 /* Child.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -153,6 +172,9 @@
 			files = (
 				7B7959D314CA245F002588FB /* main.m in Sources */,
 				7B7959D714CA245F002588FB /* HBAppDelegate.m in Sources */,
+				7B80829714CA25A60015B373 /* Model.xcdatamodeld in Sources */,
+				7B80829B14CA26E80015B373 /* Child.m in Sources */,
+				7B80829E14CA26E80015B373 /* Parent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,8 +278,24 @@
 				7B7959DC14CA245F002588FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7B80829514CA25A60015B373 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7B37784F14CD252100FA6905 /* No Action Delete Rule.xcdatamodel */,
+				7B80829614CA25A60015B373 /* Model.xcdatamodel */,
+				7B37785114CD254900FA6905 /* Nullify Delete Rule.xcdatamodel */,
+			);
+			currentVersion = 7B80829614CA25A60015B373 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7B7959B914CA245F002588FB /* Project object */;
 }

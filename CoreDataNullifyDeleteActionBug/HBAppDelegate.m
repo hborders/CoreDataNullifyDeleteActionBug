@@ -7,63 +7,184 @@
 //
 
 #import "HBAppDelegate.h"
+#import <CoreData/CoreData.h>
+#import "Parent.h"
+#import "Child.h"
+
+#define DEMONSTRATE_BUG 1
+
+@interface HBAppDelegate()
+
+@property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, retain) NSManagedObjectContext *mainManagedObjectContext;
+
+- (void) runButtonTouchUpInside;
+- (void) runTestOnBackgroundThread;
+- (void) backgroundMergeWithNotification: (id) notification;
+- (void) runAssertionOnMainThread;
+
+@end
 
 @implementation HBAppDelegate
 
 @synthesize window = _window;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize mainManagedObjectContext = _mainManagedObjectContext;
 
-- (void)dealloc
-{
-    [_window release];
+#pragma mark - init/dealloc
+
+- (void)dealloc {
+    self.window = nil;
+    self.persistentStoreCoordinator = nil;
+    self.mainManagedObjectContext = nil;
+    
     [super dealloc];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+#pragma mark - UIApplicationDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    UIButton *runButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [runButton addTarget:self
+                  action:@selector(runButtonTouchUpInside)
+        forControlEvents:UIControlEventTouchUpInside];
+    runButton.frame = self.window.bounds;
+    [runButton setTitle:@"Run" 
+               forState:UIControlStateNormal];
+    [self.window addSubview:runButton];
+    
+    NSManagedObjectModel *managedObjectModel;
+#if DEMONSTRATE_BUG
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"Nullify Delete Rule" 
+                                         withExtension:@"mom"
+                                          subdirectory:@"Model.momd"];
+    managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:url] autorelease];
+#else
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"No Action Delete Rule" 
+                                         withExtension:@"mom"
+                                          subdirectory:@"Model.momd"];
+    managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:url] autorelease];
+#endif
+    
+    self.persistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel] autorelease];
+    NSError *error = nil;
+    NSURL *sqliteUrl = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/sqlite.sqlite"]];
+    [[NSFileManager defaultManager] removeItemAtURL:sqliteUrl
+                                              error:NULL];
+    if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                       configuration:nil
+                                                                 URL:sqliteUrl 
+                                                             options:nil
+                                                               error:&error]) {
+        NSLog(@"Error when creating sqlite: %@", [error localizedDescription]);
+    }
+    
+    self.mainManagedObjectContext = [[[NSManagedObjectContext alloc] init] autorelease];
+    [self.mainManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+    
+    Parent *initialParent = [NSEntityDescription insertNewObjectForEntityForName:@"Parent"
+                                                   inManagedObjectContext:self.mainManagedObjectContext];
+    initialParent.name = @"parent1";
+    Child *initialChild = [NSEntityDescription insertNewObjectForEntityForName:@"Child"
+                                                 inManagedObjectContext:self.mainManagedObjectContext];
+    initialChild.name = @"child1";
+    [initialParent addChildsObject:initialChild];
+    
+    error = nil;
+    if (![self.mainManagedObjectContext save:&error]) {
+        NSLog(@"Error when creating initial managed objects: %@", [error localizedDescription]);
+    }
+    
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    /*
-     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-     */
+#pragma mark - private API
+
+- (void) runButtonTouchUpInside {
+    [self performSelectorInBackground:@selector(runTestOnBackgroundThread) 
+                           withObject:nil];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-     If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-     */
+- (void) runTestOnBackgroundThread {
+    NSManagedObjectContext *managedObjectContext = [[[NSManagedObjectContext alloc] init] autorelease];
+    [managedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+    
+    NSFetchRequest *parentsFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Parent"];
+    NSArray *parents = [managedObjectContext executeFetchRequest:parentsFetchRequest
+                                                           error:NULL];
+    for (Parent *parent in parents) {
+        [managedObjectContext deleteObject:parent];
+    }
+    
+    NSFetchRequest *childsFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Child"];
+    NSArray *childs = [managedObjectContext executeFetchRequest:childsFetchRequest
+                                                          error:NULL];
+    
+    Parent *adoptiveParent = [NSEntityDescription insertNewObjectForEntityForName:@"Parent"
+                                                           inManagedObjectContext:managedObjectContext];
+    adoptiveParent.name = @"parent2";
+    for (Child *child in childs) {
+        [adoptiveParent addChildsObject:child];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(backgroundMergeWithNotification:)
+                                                 name:NSManagedObjectContextDidSaveNotification
+                                               object:managedObjectContext];
+    
+    NSError *error = nil;
+    if (![managedObjectContext save:&error]) {
+        NSLog(@"Error when saving during test: %@", [error localizedDescription]);
+    }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:NSManagedObjectContextDidSaveNotification
+                                                  object:managedObjectContext];
+    
+    NSLog(@"adoptive parent: %@", adoptiveParent);
+    NSLog(@"childs: %@", childs);
+    
+    [self performSelectorOnMainThread:@selector(runAssertionOnMainThread)
+                           withObject:nil
+                        waitUntilDone:NO];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    /*
-     Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-     */
+- (void) backgroundMergeWithNotification: (id) notification {
+    [self.mainManagedObjectContext performSelectorOnMainThread:@selector(mergeChangesFromContextDidSaveNotification:) 
+                                                    withObject:notification
+                                                 waitUntilDone:YES];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    /*
-     Called when the application is about to terminate.
-     Save data if appropriate.
-     See also applicationDidEnterBackground:.
-     */
+- (void) runAssertionOnMainThread {    
+    NSFetchRequest *parentsFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Parent"];
+    NSArray *parents = [self.mainManagedObjectContext executeFetchRequest:parentsFetchRequest
+                                                                    error:NULL];
+    for (Parent *parent in parents) {
+        NSLog(@"parent name: %@ children:", parent);
+        for (Child *child in parent.childs) {
+            NSLog(@"\t child: %@", child);
+        }
+        NSLog(@"End of children for parent: %@", parent);
+    }
+    
+    NSFetchRequest *childsFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Child"];
+    NSArray *childs = [self.mainManagedObjectContext executeFetchRequest:childsFetchRequest
+                                                                   error:NULL];
+    for (Child *child in childs) {
+        NSLog(@"child: %@, parent: %@", child, child.parent);
+    }
+    
+    Child *child = [childs lastObject];
+    if (child.parent) {
+        NSLog(@"The parent is still set! There is no bug!");
+    } else {
+        NSLog(@"The parent is no longer set! Is this a bug?");
+    }
 }
 
 @end
